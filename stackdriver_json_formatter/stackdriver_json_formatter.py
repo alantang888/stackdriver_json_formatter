@@ -19,6 +19,13 @@ class StackdriverJsonFormatter(logging.Formatter):
                 'function': record.funcName}
         }
         
+        # Update message if message can parse by record.getMessage()
+        try:
+            msg = record.getMessage()
+            message_dict['message'] = msg
+        except TypeError:
+            pass
+        
         if len(record.args) > 0:
             if type(record.args) is dict:
                 for key in record.args.keys():
