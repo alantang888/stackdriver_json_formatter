@@ -25,6 +25,8 @@ class StackdriverJsonFormatter(logging.Formatter):
             message_dict['message'] = msg
         except TypeError:
             pass
+        except Exception as e:
+            message_dict['formatter_exception'] = e
         
         if len(record.args) > 0:
             if type(record.args) is dict:
