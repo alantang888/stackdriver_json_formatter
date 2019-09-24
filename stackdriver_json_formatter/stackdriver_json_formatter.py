@@ -12,8 +12,7 @@ class StackdriverJsonFormatter(logging.Formatter):
         # and https://cloud.google.com/logging/docs/agent/configuration#special-fields
         message_dict = {
             'timestamp': datetime.datetime.utcfromtimestamp(record.created).isoformat("T") + "Z",
-            'severity': record.levelname, 'message': record.msg,
-            
+            'severity': record.levelname, 'message': record.msg, 'logger': record.name,
             'sourceLocation': {
                 'file': record.filename,
                 'line': record.lineno,
